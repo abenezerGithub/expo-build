@@ -1,20 +1,50 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import {useState,useEffect,useContext} from "react";
+import {NavigationContainer,DefaultTheme} from "@react-navigation/native"
+import {SafeAreaProvider} from "react-native-safe-area-context"
+import {View,Text,SafeAreaView} from "react-native"
+import {useFonts} from "expo-font"
+import * as SplashScreen from "expo-splash-screen"
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+import Display from "./Display"
+import palette from "./constants/palette"
+
+
+
+const welcomeTheme = {
+  ...DefaultTheme.colors,
+  colors:{
+    background:palette.light
+  }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App = () => {
+
+ 
+  const [fontsLoaded] = useFonts({
+    "Roboto-Bold":require("./assets/fonts/Roboto/Roboto-Bold.ttf"),
+    "Roboto-Regular":require("./assets/fonts/Roboto/Roboto-Regular.ttf"),
+    "Roboto-Black":require("./assets/fonts/Roboto/Roboto-Black.ttf"),
+    "Lilita-bold":require("./assets/fonts/lilita/LilitaOne-Regular.ttf"),
+  })
+  useEffect(() => {
+    async function splash() {
+      await SplashScreen.preventAutoHideAsync()
+    }
+    splash()
+  },[])
+  if(!fontsLoaded) {
+    return <Text>Fonts not loaded</Text>
+  }else {
+    SplashScreen.hideAsync()
+  }
+    
+  return (
+  <AuthProvider>
+    <SafeAreaProvider>
+    <NavigationContainer theme = {welcomeTheme}>
+     <Display/>
+    </NavigationContainer>
+    </SafeAreaProvider>
+  </AuthProvider>
+  )
+}

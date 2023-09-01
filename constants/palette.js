@@ -1,0 +1,19 @@
+export default palette = {
+  primary:"#1f41bb",
+  secondary:"crimson",
+  dark:"#333",
+  drawerIcons:"#333",
+  light:"#fff",
+  bluish:"dodgerblue",
+  greyish:"#eee",
+  grey:"grey",
+  background:"#fff",
+  headerBorder:"#eee",
+  svgFill:"#fff",
+  tabIconInactive:"#333",
+  tabIconActive:"#1f41bb",
+  drawerIcon:"grey",
+  paragraph:"grey",
+  welcomeDotInactive:"#ddd",
+  welcomeDotActive:"#1f41bb"
+}
